@@ -1,0 +1,26 @@
+Project Task List:
+- logoDisplay() //Displays the logo at program boot
+- display() //Displays the playing board
+- rotate() //Rotates the piece
+- move() //Moves the piece
+- pieceFall() //Makes the piece go down by 1 row
+- quickPlace() //Allows the player to instantaneously place a piece
+- piecePlace() //Places next piece in middle of board when previous is placed
+- savePiece() //Allows the player to store a piece for later
+- leaderboard() //Displays the top 10 attempts the user has had in the program
+- clearRow() //When pieces complete a row, it will be cleared and all other rows will move down
+- combo() //Adjusts the point multiplier if multiple rows are cleared at once 
+- reset() //Resets the board and score
+- clearLeaderboard() //Resets the leaderboard
+- pieceQueue() //Randomizes the order in which shapes are presented to the player
+- music() //Optional music function to play Tetris Theme A
+- Binary search tree to store pieces
+
+Division of Work:
+- Drew - rotate(), move(), quickPlace(), pieceQueue(), binary search tree
+- Grant - savePiece(), clearRow(), combo(), reset(), piecePlace()
+- Justin - display(), leaderboard(), clearLeaderboard(), pieceFall(), music()
+- All - main()
+
+*display() & piecePlace() needs to be done ASAP
+**Need to keep track of the top left of shape at all times
