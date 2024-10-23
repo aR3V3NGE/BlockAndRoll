@@ -17,7 +17,7 @@ Project Task List:
 - Binary search tree to store pieces
 
 Division of Work:
-- Drew - rotate(), move(), quickPlace(), pieceQueue(), binary search tree
+- Drew - rotate(), move(), quickPlace(), pieceQueue(), map map 2D vector
 - Grant - savePiece(), clearRow(), combo(), reset(), piecePlace()
 - Justin - display(), leaderboard(), clearLeaderboard(), pieceFall(), music()
 - All - main()
