@@ -13,10 +13,10 @@ void printPiece(unordered_map<string, unordered_map<int, vector<vector<int>>>>& 
     for (int i = 0; i < 4; i++) {
         for (int j = 0; j < 4; j++) {
             if(pieces[piece][rotation][i][j] == 1) cout << "\033[35m◼\033[0m  ";
-            else if(pieces[piece][rotation][i][j] == 2) cout << "\033[31m◼\033[0m  ";
+            else if(pieces[piece][rotation][i][j] == 2) cout << "\033[38;5;9m◼\033[0m  ";
             else if(pieces[piece][rotation][i][j] == 3) cout << "\033[32m◼\033[0m  ";
             else if(pieces[piece][rotation][i][j] == 4) cout << "\033[38;5;214m◼\033[0m  ";
-            else if(pieces[piece][rotation][i][j] == 5) cout << "\033[38;5;17m◼\033[0m  ";
+            else if(pieces[piece][rotation][i][j] == 5) cout << "\033[38;5;105m◼\033[0m  ";
             else if(pieces[piece][rotation][i][j] == 6) cout << "\033[36m◼\033[0m  ";
             else if(pieces[piece][rotation][i][j] == 7) cout << "\033[33m◼\033[0m  ";
             else cout << ".  ";
@@ -25,10 +25,15 @@ void printPiece(unordered_map<string, unordered_map<int, vector<vector<int>>>>& 
     }
 }
 
-std::string getch() {
+void delay(int seconds) {
+    time_t start_time = time(NULL);  // Get current time
+    while (time(NULL) < start_time + seconds);  // Loop until desired time has passed
+}
+
+string getch() {
     struct termios oldt, newt;
     char ch[3]; // Buffer for 3 characters (for escape sequences)
-    std::string result;
+    string result;
 
     // Get the current terminal settings
     tcgetattr(STDIN_FILENO, &oldt);
@@ -41,14 +46,7 @@ std::string getch() {
     // Read one character
     ch[0] = getchar();
 
-    // Check for escape sequence
-    if (ch[0] == 27) { // 27 is the ESC character
-        ch[1] = getchar(); // Read the next character
-        ch[2] = getchar(); // Read the next character
-        result = std::string(ch); // Create a string from the escape sequence
-    } else {
-        result = std::string(1, ch[0]); // If it's a regular character, create a string
-    }
+    result = std::string(1, ch[0]); // If it's a regular character, create a string
 
     // Restore the old terminal settings
     tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
@@ -262,16 +260,15 @@ int main() {
         printPiece(pieces, rotation, piece);
         while (true) {
             roKey = getch();
-            if (roKey == "\033[D") {
+            if (roKey == "a") {
                 rotation = (rotation + 3) % 4;
                 printPiece(pieces, rotation, piece);
-            } else if (roKey == "\033[C") {
+            } else if (roKey == "d") {
                 rotation = (rotation + 1) % 4;
                 printPiece(pieces, rotation, piece);
             } else if (roKey == "q") {
                 break;
             } else continue;
-
         }
     }
     return 0;
